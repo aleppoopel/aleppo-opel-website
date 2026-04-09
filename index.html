@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aleppo Opel Çıkma Parça - Opel ve Chevrolet Yedek Parçaları</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f5f5f5;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+            color: white;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .contact-info {
+            font-size: 14px;
+            color: #FFD700;
+        }
+
+        .contact-info a {
+            color: #FFD700;
+            text-decoration: none;
+            margin: 0 15px;
+        }
+
+        .contact-info a:hover {
+            text-decoration: underline;
+        }
+
+        /* Main Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Section Title */
+        .section-title {
+            text-align: center;
+            font-size: 32px;
+            margin: 40px 0 30px;
+            color: #1a1a1a;
+        }
+
+        /* Gallery Grid */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .gallery-item {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* About Section */
+        .about {
+            background: white;
+            padding: 40px;
+            border-radius: 8px;
+            margin: 40px 0;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .about h2 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: #1a1a1a;
+        }
+
+        .about p {
+            margin-bottom: 15px;
+            color: #666;
+            line-height: 1.8;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .feature-item {
+            background: #f9f9f9;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            border-left: 4px solid #FFD700;
+        }
+
+        .feature-item h3 {
+            color: #FFD700;
+            margin-bottom: 10px;
+        }
+
+        .feature-item p {
+            color: #666;
+            font-size: 14px;
+        }
+
+        /* Contact Section */
+        .contact {
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+            color: white;
+            padding: 40px;
+            border-radius: 8px;
+            margin: 40px 0;
+            text-align: center;
+        }
+
+        .contact h2 {
+            margin-bottom: 30px;
+            color: #FFD700;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+        }
+
+        .contact-item h3 {
+            color: #FFD700;
+            margin-bottom: 10px;
+        }
+
+        .contact-item p {
+            color: #ccc;
+            line-height: 1.8;
+        }
+
+        .contact-item a {
+            color: #FFD700;
+            text-decoration: none;
+        }
+
+        .contact-item a:hover {
+            text-decoration: underline;
+        }
+
+        /* Footer */
+        footer {
+            background: #0a0a0a;
+            color: #999;
+            text-align: center;
+            padding: 30px 20px;
+            border-top: 1px solid #333;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .logo {
+                font-size: 22px;
+            }
+
+            .section-title {
+                font-size: 24px;
+            }
+
+            .gallery {
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            }
+
+            .about {
+                padding: 20px;
+            }
+        }
+
+        /* Modal for full image view */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.8);
+        }
+
+        .modal-content {
+            margin: auto;
+            display: block;
+            max-width: 90%;
+            max-height: 90vh;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .close {
+            position: absolute;
+            top: 20px;
+            right: 40px;
+            color: white;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .close:hover {
+            color: #FFD700;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="logo">🚗 Aleppo Opel Çıkma Parça</div>
+        <div class="contact-info">
+            <a href="tel:+905345812969">📞 +90 534 581 29 69</a>
+            <a href="mailto:aleppoopelotomotiv@gmail.com">📧 aleppoopelotomotiv@gmail.com</a>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <div class="container">
+        <!-- Gallery Section -->
+        <h2 class="section-title">قطع غيار أوبل وشيفروليه</h2>
+        <div class="gallery" id="gallery">
+            <!-- الصور ستظهر هنا تلقائياً -->
+        </div>
+
+        <!-- About Section -->
+        <div class="about">
+            <h2>عن متجرنا</h2>
+            <p>متخصصون في بيع قطع غيار سيارات أوبل وشيفروليه المستعملة الأصلية في إسطنبول، تركيا.</p>
+            <p>نوفر قطع غيار أصلية بجودة عالية مع ضمان لمدة أسبوع. جميع منتجاتنا مختبرة وموثوقة.</p>
+            
+            <div class="features">
+                <div class="feature-item">
+                    <h3>✓ أصلية 100%</h3>
+                    <p>قطع غيار أصلية مضمونة</p>
+                </div>
+                <div class="feature-item">
+                    <h3>✓ ضمان أسبوع</h3>
+                    <p>ضمان على جميع المنتجات</p>
+                </div>
+                <div class="feature-item">
+                    <h3>✓ أسعار منافسة</h3>
+                    <p>أفضل الأسعار في السوق</p>
+                </div>
+                <div class="feature-item">
+                    <h3>✓ تسليم سريع</h3>
+                    <p>توصيل فوري إلى عنوانك</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contact Section -->
+        <div class="contact">
+            <h2>معلومات التواصل</h2>
+            <div class="contact-grid">
+                <div class="contact-item">
+                    <h3>📞 الهاتف</h3>
+                    <p><a href="tel:+905345812969">+90 534 581 29 69</a></p>
+                </div>
+                <div class="contact-item">
+                    <h3>📧 البريد الإلكتروني</h3>
+                    <p><a href="mailto:aleppoopelotomotiv@gmail.com">aleppoopelotomotiv@gmail.com</a></p>
+                </div>
+                <div class="contact-item">
+                    <h3>📍 العنوان</h3>
+                    <p>TRİKO CENTER SAN. SİT.<br>S/2 BLOK NO 82<br>İkitelli OSB, Başakşehir<br>İSTANBUL</p>
+                </div>
+                <div class="contact-item">
+                    <h3>🕐 الساعات</h3>
+                    <p>مفتوح كل يوم<br>خدمة سريعة</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal for full image view -->
+    <div id="imageModal" class="modal">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <img class="modal-content" id="modalImage">
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 Aleppo Opel Otomotiv. جميع الحقوق محفوظة.</p>
+    </footer>
+
+    <script>
+        // تحميل الصور تلقائياً من مجلد images
+        async function loadImages() {
+            try {
+                const response = await fetch('./images/');
+                const text = await response.text();
+                const parser = new DOMParser();
+                const doc = parser.parseFromString(text, 'text/html');
+                
+                // البحث عن روابط الصور
+                const links = doc.querySelectorAll('a');
+                const imageExtensions = ['.jpg', '.jpeg', '.png', '.gif', '.webp'];
+                const gallery = document.getElementById('gallery');
+                
+                links.forEach(link => {
+                    const href = link.getAttribute('href');
+                    if (href && imageExtensions.some(ext => href.toLowerCase().endsWith(ext))) {
+                        const img = document.createElement('div');
+                        img.className = 'gallery-item';
+                        img.innerHTML = `<img src="./images/${href}" alt="قطعة غيار" onclick="openModal(this.src)">`;
+                        gallery.appendChild(img);
+                    }
+                });
+
+                // إذا لم توجد صور، عرض رسالة
+                if (gallery.children.length === 0) {
+                    gallery.innerHTML = '<p style="grid-column: 1/-1; text-align: center; color: #999; padding: 40px;">لم تتم إضافة صور بعد. أضف صورك في مجلد images</p>';
+                }
+            } catch (error) {
+                console.log('جاري تحميل الصور...');
+                // إذا لم تعمل الطريقة الأولى، عرض رسالة
+                document.getElementById('gallery').innerHTML = '<p style="grid-column: 1/-1; text-align: center; color: #999; padding: 40px;">أضف صورك في مجلد images على GitHub</p>';
+            }
+        }
+
+        // فتح الصورة بحجم كامل
+        function openModal(src) {
+            document.getElementById('imageModal').style.display = 'block';
+            document.getElementById('modalImage').src = src;
+        }
+
+        // إغلاق الصورة
+        function closeModal() {
+            document.getElementById('imageModal').style.display = 'none';
+        }
+
+        // إغلاق عند النقر خارج الصورة
+        window.onclick = function(event) {
+            const modal = document.getElementById('imageModal');
+            if (event.target == modal) {
+                modal.style.display = 'none';
+            }
+        }
+
+        // تحميل الصور عند فتح الصفحة
+        window.addEventListener('load', loadImages);
+    </script>
+</body>
+</html>
