@@ -12,13 +12,48 @@
             height: 250px;
             object-fit: cover;
             width: 100%;
+            cursor: pointer;
         }
         .image-card:hover img {
             transform: scale(1.05 );
         }
+        /* Lightbox Style */
+        #lightbox {
+            display: none;
+            position: fixed;
+            z-index: 9999;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            justify-content: center;
+            align-items: center;
+        }
+        #lightbox img {
+            max-width: 90%;
+            max-height: 80%;
+            border: 4px solid white;
+            border-radius: 8px;
+        }
+        #lightbox .close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: white;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+        }
     </style>
 </head>
 <body class="bg-gray-100 font-sans">
+
+    <!-- Lightbox Container -->
+    <div id="lightbox" onclick="closeLightbox()">
+        <span class="close">&times;</span>
+        <img id="lightbox-img" src="" alt="Büyük Resim">
+    </div>
 
     <!-- Header -->
     <header class="bg-slate-800 text-white py-8 shadow-lg">
@@ -47,13 +82,13 @@
             </div>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <div class="image-card rounded-xl overflow-hidden border-2 border-gray-100 shadow-sm">
-                    <img src="./public/images/engine/328c1e34-89bc-40fb-9a4f-8bc11743e164.jpg" alt="Motor Parçası 1">
+                    <img src="./public/images/engine/328c1e34-89bc-40fb-9a4f-8bc11743e164.jpg" alt="Motor Parçası 1" onclick="openLightbox(this.src)">
                 </div>
                 <div class="image-card rounded-xl overflow-hidden border-2 border-gray-100 shadow-sm">
-                    <img src="./public/images/engine/5640cb82-647d-4737-a950-d15e58039240.jpg" alt="Motor Parçası 2">
+                    <img src="./public/images/engine/5640cb82-647d-4737-a950-d15e58039240.jpg" alt="Motor Parçası 2" onclick="openLightbox(this.src)">
                 </div>
                 <div class="image-card rounded-xl overflow-hidden border-2 border-gray-100 shadow-sm">
-                    <img src="./public/images/engine/7e04da78-c228-44ba-b920-f7e30fee073b.jpg" alt="Motor Parçası 3">
+                    <img src="./public/images/engine/7e04da78-c228-44ba-b920-f7e30fee073b.jpg" alt="Motor Parçası 3" onclick="openLightbox(this.src)">
                 </div>
             </div>
         </section>
@@ -71,7 +106,7 @@
             </div>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <div class="image-card rounded-xl overflow-hidden border-2 border-gray-100 shadow-sm">
-                    <img src="./public/images/transmission/6698647b-6083-4841-840a-207604635602.jpg" alt="Şanzıman Parçası">
+                    <img src="./public/images/transmission/6698647b-6083-4841-840a-207604635602.jpg" alt="Şanzıman Parçası" onclick="openLightbox(this.src)">
                 </div>
             </div>
         </section>
@@ -105,6 +140,16 @@
             <p class="text-sm text-gray-400"><i class="fas fa-map-marker-alt mr-2"></i> İkitelli OSB, Başakşehir, İSTANBUL</p>
         </div>
     </footer>
+
+    <script>
+        function openLightbox(src) {
+            document.getElementById('lightbox-img').src = src;
+            document.getElementById('lightbox').style.display = 'flex';
+        }
+        function closeLightbox() {
+            document.getElementById('lightbox').style.display = 'none';
+        }
+    </script>
 
 </body>
 </html>
