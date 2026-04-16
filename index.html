@@ -7,8 +7,10 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        .image-card img { transition: transform 0.3s ease; height: 250px; object-fit: cover; width: 100%; cursor: pointer; }
-        .image-card:hover img { transform: scale(1.05 ); }
+        .image-card { transition: all 0.3s ease; }
+        .image-card img { height: 250px; object-fit: cover; width: 100%; cursor: pointer; transition: transform 0.3s ease; }
+        .image-card:hover { transform: translateY(-5px ); shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1); }
+        .image-card:hover img { transform: scale(1.05); }
         #lightbox { display: none; position: fixed; z-index: 9999; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.9); justify-content: center; align-items: center; }
         #lightbox img { max-width: 90%; max-height: 80%; border: 4px solid white; border-radius: 8px; }
         #lightbox .close { position: absolute; top: 20px; right: 30px; color: white; font-size: 40px; cursor: pointer; }
@@ -34,56 +36,29 @@
             <div class="text-center py-10"><div class="loading-spinner"></div><p class="mt-4 text-gray-500">Resimler yükleniyor...</p></div>
         </div>
 
-        <!-- قسم موقع المحل المصحح بالرابط الرسمي -->
+        <!-- قسم موقع المحل -->
         <section class="mt-12 bg-white rounded-2xl shadow-xl overflow-hidden p-8 border-t-4 border-slate-800">
             <div class="flex items-center mb-8 border-b pb-4">
                 <div class="bg-slate-100 p-3 rounded-lg mr-4"><i class="fas fa-map-marker-alt text-slate-800 text-3xl"></i></div>
-                <div>
-                    <h2 class="text-3xl font-bold text-gray-800">Bize Ulaşın</h2>
-                    <p class="text-gray-600">Mağazamıza bekleriz</p>
-                </div>
+                <div><h2 class="text-3xl font-bold text-gray-800">Bize Ulaşın</h2><p class="text-gray-600">Mağazamıza bekleriz</p></div>
             </div>
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
                 <div>
                     <h3 class="text-xl font-bold mb-4 text-slate-800">Adres Bilgileri</h3>
-                    <p class="text-gray-700 text-lg leading-relaxed mb-6">
-                        İkitelli OSB Mah. triko DOKUMACILAR S2 blok Sk.  
-
-                        triko DOKUMACILAR S2 blok, No: 82  
-
-                        iç kapı no: 82, 34490  
-
-                        <strong>Başakşehir / İSTANBUL</strong>
-                    </p>
-                    <div class="space-y-4">
-                        <div class="flex items-center text-gray-600">
-                            <i class="fas fa-clock w-8 text-blue-600"></i>
-                            <span>Her gün açık - Hızlı hizmet</span>
-                        </div>
-                        <div class="flex items-center text-gray-600">
-                            <i class="fas fa-phone w-8 text-blue-600"></i>
-                            <span>+90 534 581 29 69</span>
-                        </div>
-                    </div>
-                    <!-- الرابط الرسمي لموقعك على خرائط جوجل -->
-                    <a href="https://www.google.com/maps/place/ALEPPO+OPEL+%C3%87IKMA+PAR%C3%87A/@41.0791092,28.7984687,17z/" target="_blank" class="inline-block mt-8 bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition font-bold">
-                        <i class="fas fa-directions mr-2"></i> Google Haritalar'da Aç
-                    </a>
+                    <p class="text-gray-700 text-lg leading-relaxed mb-6">İkitelli OSB Mah. triko DOKUMACILAR S2 blok Sk.  
+triko DOKUMACILAR S2 blok, No: 82  
+iç kapı no: 82, 34490  
+<strong>Başakşehir / İSTANBUL</strong></p>
+                    <a href="https://www.google.com/maps/place/ALEPPO+OPEL+%C3%87IKMA+PAR%C3%87A/@41.0791092,28.7984687,17z/" target="_blank" class="inline-block bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition font-bold"><i class="fas fa-directions mr-2"></i> Google Haritalar'da Aç</a>
                 </div>
                 <div class="rounded-xl overflow-hidden shadow-inner border h-80 lg:h-auto">
-                    <!-- الخريطة التفاعلية الموجهة لموقعك الرسمي -->
-                    <iframe 
-                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3007.6183456789!2d28.7984687!3d41.0791092!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14caa56fa3b81485%3A0x684f17b29a03ff29!2sALEPPO%20OPEL%20%C3%87IKMA%20PAR%C3%87A!5e0!3m2!1str!2str!4v1713260000000!5m2!1str!2str" 
-                        width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
-                    </iframe>
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3007.6183456789!2d28.7984687!3d41.0791092!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14caa56fa3b81485%3A0x684f17b29a03ff29!2sALEPPO%20OPEL%20%C3%87IKMA%20PAR%C3%87A!5e0!3m2!1str!2str!4v1713260000000!5m2!1str!2str" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
                 </div>
             </div>
         </section>
     </main>
 
-    <footer class="bg-slate-800 text-white py-10 mt-12 text-center">
-        <p>© 2026 Aleppo Opel Çıkma Parça. Tüm hakları saklıdır.</p>
-    </footer>
+    <footer class="bg-slate-800 text-white py-10 mt-12 text-center"><p>© 2026 Aleppo Opel Çıkma Parça. Tüm hakları saklıdır.</p></footer>
 
     <script>
         const repoOwner = 'aleppoopel';
@@ -99,7 +74,14 @@
             { id: 'other', title: 'Diğer Parçalar', icon: 'fa-box', color: 'gray' }
         ];
 
-        async function loadImages( ) {
+        function formatFileName(name ) {
+            // إزالة الامتداد والشرطات وتحويلها لمسافات
+            let cleanName = name.split('.')[0].replace(/[_-]/g, ' ');
+            // جعل أول حرف من كل كلمة كبيراً (اختياري)
+            return cleanName;
+        }
+
+        async function loadImages() {
             const container = document.getElementById('categories-container');
             container.innerHTML = '';
             for (const cat of categories) {
@@ -121,7 +103,14 @@
                         grid.innerHTML = '';
                         files.forEach(file => {
                             if (file.name.match(/\.(jpg|jpeg|png|gif|webp)$/i)) {
-                                grid.innerHTML += `<div class="image-card rounded-xl overflow-hidden border-2 border-gray-100 shadow-sm"><img src="${file.download_url}" alt="${cat.title}" onclick="openLightbox(this.src)"></div>`;
+                                const displayName = formatFileName(file.name);
+                                grid.innerHTML += `
+                                    <div class="image-card rounded-xl overflow-hidden border border-gray-200 shadow-sm bg-gray-50">
+                                        <img src="${file.download_url}" alt="${displayName}" onclick="openLightbox(this.src)">
+                                        <div class="p-4 bg-white border-t">
+                                            <p class="text-center font-bold text-gray-700">${displayName}</p>
+                                        </div>
+                                    </div>`;
                             }
                         });
                     } else { grid.innerHTML = '<p class="text-gray-400 italic">Henüz resim eklenmemiştir.</p>'; }
