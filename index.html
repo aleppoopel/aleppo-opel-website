@@ -7,19 +7,9 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        .image-card img {
-            transition: transform 0.3s ease;
-            height: 250px;
-            object-fit: cover;
-            width: 100%;
-            cursor: pointer;
-        }
+        .image-card img { transition: transform 0.3s ease; height: 250px; object-fit: cover; width: 100%; cursor: pointer; }
         .image-card:hover img { transform: scale(1.05 ); }
-        #lightbox {
-            display: none; position: fixed; z-index: 9999; top: 0; left: 0;
-            width: 100%; height: 100%; background: rgba(0, 0, 0, 0.9);
-            justify-content: center; align-items: center;
-        }
+        #lightbox { display: none; position: fixed; z-index: 9999; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.9); justify-content: center; align-items: center; }
         #lightbox img { max-width: 90%; max-height: 80%; border: 4px solid white; border-radius: 8px; }
         #lightbox .close { position: absolute; top: 20px; right: 30px; color: white; font-size: 40px; cursor: pointer; }
         .loading-spinner { border: 4px solid #f3f3f3; border-top: 4px solid #3498db; border-radius: 50%; width: 30px; height: 30px; animation: spin 2s linear infinite; display: inline-block; }
@@ -40,15 +30,61 @@
     </header>
 
     <main class="container mx-auto px-4 py-10">
+        
+        <!-- قسم الصور التلقائي -->
         <div id="categories-container">
-            <!-- سيتم توليد الأقسام تلقائياً هنا -->
             <div class="text-center py-10"><div class="loading-spinner"></div><p class="mt-4 text-gray-500">Resimler yükleniyor...</p></div>
         </div>
+
+        <!-- قسم موقع المحل (العنوان والخريطة) -->
+        <section class="mt-12 bg-white rounded-2xl shadow-xl overflow-hidden p-8 border-t-4 border-slate-800">
+            <div class="flex items-center mb-8 border-b pb-4">
+                <div class="bg-slate-100 p-3 rounded-lg mr-4"><i class="fas fa-map-marker-alt text-slate-800 text-3xl"></i></div>
+                <div>
+                    <h2 class="text-3xl font-bold text-gray-800">Bize Ulaşın</h2>
+                    <p class="text-gray-600">Mağazamıza bekleriz</p>
+                </div>
+            </div>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <div>
+                    <h3 class="text-xl font-bold mb-4 text-slate-800">Adres Bilgileri</h3>
+                    <p class="text-gray-700 text-lg leading-relaxed mb-6">
+                        TRİKO CENTER SAN. SİT.  
+
+                        S/2 BLOK NO 82  
+
+                        İkitelli OSB, Başakşehir  
+
+                        <strong>İSTANBUL</strong>
+                    </p>
+                    <div class="space-y-4">
+                        <div class="flex items-center text-gray-600">
+                            <i class="fas fa-clock w-8 text-blue-600"></i>
+                            <span>Her gün açık - Hızlı hizmet</span>
+                        </div>
+                        <div class="flex items-center text-gray-600">
+                            <i class="fas fa-phone w-8 text-blue-600"></i>
+                            <span>+90 534 581 29 69</span>
+                        </div>
+                    </div>
+                    <a href="https://www.google.com/maps/search/?api=1&query=Triko+Center+Sanayi+Sitesi+Ikitelli+Basaksehir" target="_blank" class="inline-block mt-8 bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition font-bold">
+                        <i class="fas fa-directions mr-2"></i> Google Haritalar'da Aç
+                    </a>
+                </div>
+                <div class="rounded-xl overflow-hidden shadow-inner border h-80 lg:h-auto">
+                    <!-- خريطة جوجل التفاعلية -->
+                    <iframe 
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3007.864453526343!2d28.7954!3d41.0754!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDHCsDA0JzMxLjQiTiAyOMKwNDcnNDMuNCJF!5e0!3m2!1str!2str!4v1713260000000!5m2!1str!2str" 
+                        width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
+                </div>
+            </div>
+        </section>
+
     </main>
 
     <footer class="bg-slate-800 text-white py-10 mt-12 text-center">
         <p>© 2026 Aleppo Opel Çıkma Parça. Tüm hakları saklıdır.</p>
-        <p class="text-sm text-gray-400 mt-2"><i class="fas fa-map-marker-alt mr-2"></i> İkitelli OSB, Başakşehir, İSTANBUL</p>
     </footer>
 
     <script>
@@ -65,10 +101,9 @@
             { id: 'other', title: 'Diğer Parçalar', icon: 'fa-box', color: 'gray' }
         ];
 
-        async function loadImages() {
+        async function loadImages( ) {
             const container = document.getElementById('categories-container');
             container.innerHTML = '';
-
             for (const cat of categories) {
                 const section = document.createElement('section');
                 section.className = `mb-12 bg-white rounded-2xl shadow-xl overflow-hidden p-8 border-t-4 border-${cat.color}-600`;
@@ -77,39 +112,26 @@
                         <div class="bg-${cat.color}-100 p-3 rounded-lg mr-4"><i class="fas ${cat.icon} text-${cat.color}-600 text-3xl"></i></div>
                         <div><h2 class="text-3xl font-bold text-gray-800">${cat.title}</h2></div>
                     </div>
-                    <div id="grid-${cat.id}" class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                        <p class="text-gray-400 italic">Resim aranıyor...</p>
-                    </div>
+                    <div id="grid-${cat.id}" class="grid grid-cols-1 md:grid-cols-3 gap-6"><p class="text-gray-400 italic">Resim aranıyor...</p></div>
                 `;
                 container.appendChild(section);
-
                 try {
                     const response = await fetch(`https://api.github.com/repos/${repoOwner}/${repoName}/contents/public/images/${cat.id}` );
                     const files = await response.json();
                     const grid = document.getElementById(`grid-${cat.id}`);
-                    
                     if (Array.isArray(files) && files.length > 0) {
                         grid.innerHTML = '';
                         files.forEach(file => {
                             if (file.name.match(/\.(jpg|jpeg|png|gif|webp)$/i)) {
-                                grid.innerHTML += `
-                                    <div class="image-card rounded-xl overflow-hidden border-2 border-gray-100 shadow-sm">
-                                        <img src="${file.download_url}" alt="${cat.title}" onclick="openLightbox(this.src)">
-                                    </div>`;
+                                grid.innerHTML += `<div class="image-card rounded-xl overflow-hidden border-2 border-gray-100 shadow-sm"><img src="${file.download_url}" alt="${cat.title}" onclick="openLightbox(this.src)"></div>`;
                             }
                         });
-                    } else {
-                        grid.innerHTML = '<p class="text-gray-400 italic">Henüz resim eklenmemiştir.</p>';
-                    }
-                } catch (e) {
-                    document.getElementById(`grid-${cat.id}`).innerHTML = '<p class="text-gray-400 italic">Henüz resim eklenmemiştir.</p>';
-                }
+                    } else { grid.innerHTML = '<p class="text-gray-400 italic">Henüz resim eklenmemiştir.</p>'; }
+                } catch (e) { document.getElementById(`grid-${cat.id}`).innerHTML = '<p class="text-gray-400 italic">Henüz resim eklenmemiştir.</p>'; }
             }
         }
-
         function openLightbox(src) { document.getElementById('lightbox-img').src = src; document.getElementById('lightbox').style.display = 'flex'; }
         function closeLightbox() { document.getElementById('lightbox').style.display = 'none'; }
-        
         loadImages();
     </script>
 </body>
