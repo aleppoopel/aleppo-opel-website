@@ -74,11 +74,23 @@ iç kapı no: 82, 34490
             { id: 'other', title: 'Diğer Parçalar', icon: 'fa-box', color: 'gray' }
         ];
 
-        function formatFileName(name ) {
-            // إزالة الامتداد والشرطات وتحويلها لمسافات
-            let cleanName = name.split('.')[0].replace(/[_-]/g, ' ');
-            // جعل أول حرف من كل كلمة كبيراً (اختياري)
-            return cleanName;
+        // Descriptive Turkish names based on the parts visible in each photo.
+        const partNames = {
+            'engine/20260422_155109.jpg': 'Emme Manifoldu',
+            'engine/328c1e34-89bc-40fb-9a4f-8bc11743e164.jpg': 'Komple Dizel Motor',
+            'engine/5640cb82-647d-4737-a950-d15e58039240.jpg': 'Komple Turbo Benzinli Motor',
+            'engine/7e04da78-c228-44ba-b920-f7e30fee073b.jpg': 'Komple Dizel Motor',
+            'electrical/6a47cd62-d8ad-4d93-9924-8a6067398a59.jpg': 'Dizel Enjeksiyon Kontrol Ünitesi (EDU)'
+        };
+
+        function getPartName(category, name) {
+            const knownName = partNames[`${category.id}/${name}`];
+            if (knownName) return knownName;
+
+            const stem = name.replace(/\.[^.]+$/, '');
+            const isGeneratedName = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(stem)
+                || /^\d+(?:[_-]\d+)*$/.test(stem);
+            return isGeneratedName ? category.title : stem.replace(/[_-]/g, ' ');
         }
 
         async function loadImages() {
@@ -103,12 +115,13 @@ iç kapı no: 82, 34490
                         grid.innerHTML = '';
                         files.forEach(file => {
                             if (file.name.match(/\.(jpg|jpeg|png|gif|webp)$/i)) {
-                                const displayName = formatFileName(file.name);
+                                const displayName = getPartName(cat, file.name);
                                 grid.innerHTML += `
                                     <div class="image-card rounded-xl overflow-hidden border border-gray-200 shadow-sm bg-gray-50">
                                         <img src="${file.download_url}" alt="${displayName}" onclick="openLightbox(this.src)">
                                         <div class="p-4 bg-white border-t">
                                             <p class="text-center font-bold text-gray-700">${displayName}</p>
+                                            <p class="mt-1 text-center text-sm text-gray-500 break-all">${file.name.replace(/\.[^.]+$/, '')}</p>
                                         </div>
                                     </div>`;
                             }
